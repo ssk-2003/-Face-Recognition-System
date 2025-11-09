@@ -15,23 +15,6 @@
 
 ---
 
-## 📋 Table of Contents
-
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Usage Guide](#-usage-guide)
-- [API Documentation](#-api-documentation)
-- [Project Structure](#-project-structure)
-- [Configuration](#-configuration)
-- [Performance](#-performance)
-- [Contributing](#-contributing)
-- [License](#-license)
-
----
-
 ## 🌟 Overview
 
 Face Recognition System (FRS) is a complete solution for face detection, recognition, and identity management. Built with modern technologies like **FastAPI** and **Streamlit**, it provides both a powerful REST API and an intuitive web interface.
