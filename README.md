@@ -21,7 +21,13 @@ Face Recognition System (FRS) is a complete solution for face detection, recogni
 
 ### Key Capabilities
 
-- 🔍 Locate faces in images with MTCNN - 👤 **Face Recognition** - Identify people using FaceNet embeddings - 📊 **Gallery Management** - Store and manage known identities - 📹 **Live Camera** - Real-time face recognition - 🔐 **JWT Authentication** - Secure API access - 🎯 **High Accuracy** - 92.3% recognition accuracy - ⚡ **Fast Processing** - 45ms detection, 110ms recognition
+- 🔍 **Face Detection** - Locate faces in images with MTCNN
+- 👤 **Face Recognition** - Identify people using FaceNet embeddings
+- 📊 **Gallery Management** - Store and manage known identities
+- 📹 **Live Camera** - Real-time face recognition
+- 🔐 **JWT Authentication** - Secure API access
+- 🎯 **High Accuracy** - 92.3% recognition accuracy
+- ⚡ **Fast Processing** - 45ms detection, 110ms recognition
 
 ---
 
