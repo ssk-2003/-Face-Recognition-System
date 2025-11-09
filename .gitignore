@@ -26,6 +26,7 @@ env/
 ENV/
 .venv/
 frs/
+frs_env/
 
 # IDE
 .vscode/

@@ -1,0 +1,49 @@
+﻿
+# Authentication & Security
+# Backend API Dependencies
+# Bonus Features
+# Computer Vision
+# Core Web Framework
+# Data Processing
+# Database
+# Deep Learning
+# Deep Learning (use latest stable versions)
+# Face Recognition
+# Frontend
+# Logging
+# Testing
+# Utilities
+# Vector Search
+aiofiles>=23.0
+aiosqlite>=0.19
+facenet-pytorch>=2.5
+faiss-cpu>=1.7
+fastapi>=0.104
+httpx>=0.25
+loguru>=0.7
+matplotlib>=3.8
+numpy>=1.24
+onnx>=1.15
+onnxruntime>=1.16
+opencv-python>=4.8
+openpyxl>=3.1
+pandas>=2.1
+passlib[bcrypt]>=1.7
+Pillow>=10.0
+pydantic>=2.5
+pydantic-settings>=2.1
+pytest>=7.4
+pytest-asyncio>=0.21
+python-dotenv>=1.0
+python-jose[cryptography]>=3.3
+python-multipart>=0.0.6
+requests>=2.31
+scikit-learn>=1.3
+seaborn>=0.13
+sqlalchemy>=2.0
+streamlit>=1.29
+streamlit-webrtc>=0.47
+torch>=2.0
+torchvision>=0.15
+tqdm>=4.66
+uvicorn[standard]>=0.24

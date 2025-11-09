@@ -2,9 +2,10 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.29+-red.svg)
+![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.121+-green.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.51+-red.svg)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.9-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 **A production-ready Face Recognition System with real-time detection, identification, and gallery management.**
@@ -97,10 +98,11 @@ Face Recognition System (FRS) is a complete solution for face detection, recogni
 
 ### Prerequisites
 
-- **Python 3.10+**
+- **Python 3.11** (Recommended for best performance)
 - **pip** (Python package manager)
 - **Git** (optional)
 - **Webcam** (for live camera feature)
+- **~3GB disk space** (for dependencies)
 
 ### Step 1: Clone Repository
 
@@ -112,13 +114,13 @@ cd FRS
 ### Step 2: Create Virtual Environment
 
 ```bash
-# Windows
-python -m venv frs
-frs\Scripts\activate
+# Windows (use Python 3.11)
+py -3.11 -m venv frs_env
+frs_env\Scripts\Activate.ps1
 
 # Linux/Mac
-python3 -m venv frs
-source frs/bin/activate
+python3.11 -m venv frs_env
+source frs_env/bin/activate
 ```
 
 ### Step 3: Install Dependencies
@@ -153,19 +155,24 @@ python -c "import torch, cv2, facenet_pytorch, faiss, streamlit; print('✅ All 
 ### Start Backend Server
 
 ```bash
-# Terminal 1
-cd backend
-python main.py
+# Terminal 1 - Activate environment first
+.\frs_env\Scripts\Activate.ps1
+
+# Start API server
+python run_api.py
 ```
 
-**Backend will be available at:** http://localhost:8000
+**Backend will be available at:** http://localhost:8000  
+**API Docs:** http://localhost:8000/docs
 
 ### Start Frontend Interface
 
 ```bash
-# Terminal 2
-cd frontend
-python -m streamlit run app.py
+# Terminal 2 - New terminal, activate environment
+.\frs_env\Scripts\Activate.ps1
+
+# Start Streamlit frontend
+streamlit run frontend/app.py
 ```
 
 **Frontend will be available at:** http://localhost:8501
@@ -400,42 +407,75 @@ Visit http://localhost:8000/docs for interactive API documentation with Swagger 
 
 ```
 FRS/
-├── backend/                 # FastAPI Backend
-│   ├── api/                # API routes
-│   │   └── routes.py      # Main API endpoints
-│   ├── models/             # ML models
-│   │   ├── face_detector.py
-│   │   ├── feature_extractor.py
-│   │   └── matcher.py
-│   ├── utils/              # Utility functions
-│   ├── main.py            # FastAPI application
-│   ├── config.py          # Configuration
-│   ├── database.py        # Database models
-│   ├── auth.py            # JWT authentication
-│   └── schemas.py         # Pydantic models
+├── src/                    # Source code
+│   ├── api_service.py     # Main FastAPI application
+│   ├── detect_faces.py    # Face detection module (MTCNN)
+│   ├── extract_embeddings.py  # Feature extraction (FaceNet)
+│   ├── match_faces.py     # Face matching (Cosine + Faiss)
+│   ├── database.py        # Database operations
+│   ├── config.py          # Configuration management
+│   ├── schemas.py         # Pydantic models
+│   ├── utils.py           # Utility functions
+│   ├── logger.py          # Logging system
+│   ├── data_prep.py       # Dataset preparation
+│   ├── api/               # API routes
+│   │   └── routes.py     # REST API endpoints
+│   └── bonus/             # Bonus features
+│       ├── auth.py       # JWT authentication
+│       ├── clustering.py # Face clustering
+│       ├── liveness.py   # Liveness detection
+│       └── gpu_support.py # GPU acceleration
 │
-├── frontend/               # Streamlit Frontend
-│   ├── app.py             # Main Streamlit app
-│   ├── live_camera.py     # Live camera feature
-│   └── requirements.txt   # Frontend dependencies
+├── benchmarks/             # Performance testing
+│   ├── run_all_benchmarks.py  # Master script
+│   ├── latency_test.py    # CPU benchmarking
+│   ├── evaluate_metrics.py # Accuracy evaluation
+│   └── onnx_benchmark.py  # ONNX optimization
 │
-├── data/                   # Data storage (auto-created)
-│   ├── gallery/           # Identity photos
-│   ├── uploads/           # Temporary uploads
-│   └── frs_database.db    # SQLite database
+├── frontend/               # Web interfaces
+│   ├── app.py             # Streamlit main app
+│   └── live_camera.py     # Live camera feature
 │
-├── logs/                   # Application logs
-├── tests/                  # Unit tests
-├── examples/               # Example files
+├── demo/                   # Demonstrations
+│   ├── demo_script.py     # Complete system demo
+│   └── images/            # Demo images
+│
+├── data/                   # Data storage
+│   ├── raw/               # Original datasets
+│   ├── processed/         # Preprocessed faces
+│   ├── embeddings/        # Saved embeddings
+│   ├── gallery/           # Registered identities
+│   └── uploads/           # Temporary uploads
+│
+├── models/                 # Model weights
+│   ├── detector/          # Detection models
+│   ├── embedder/          # Embedding models
+│   └── onnx/              # ONNX optimized models
+│
+├── database/               # Database files
+│   ├── frs_database.db    # SQLite database
+│   └── db_schema.sql      # Database schema
+│
+├── docker/                 # Docker deployment
+│   ├── Dockerfile         # Container configuration
+│   ├── docker-compose.yml # Multi-container setup
+│   └── requirements.txt   # Python dependencies
+│
+├── tests/                  # Test suite
+│   └── test_api.py        # API unit tests
+│
+├── reports/                # Generated reports
+│   └── evaluation_*.json/md
+│
+├── examples/               # Usage examples
 │   └── FRS_Postman_Collection.json
 │
+├── run_api.py              # API startup script
 ├── requirements.txt        # Python dependencies
 ├── README.md              # This file
 ├── LICENSE                # MIT License
 ├── .gitignore            # Git ignore rules
-├── .env.example          # Environment variables template
-├── Dockerfile            # Docker image
-└── docker-compose.yml    # Docker Compose setup
+└── .env.example          # Environment template
 ```
 
 ---
@@ -454,7 +494,7 @@ PORT=8000
 APP_NAME=Face Recognition Service
 
 # Database
-DATABASE_URL=sqlite+aiosqlite:///./data/frs_database.db
+DATABASE_URL=sqlite+aiosqlite:///./database/frs_database.db
 
 # Models
 DETECTION_MODEL=mtcnn
@@ -473,7 +513,7 @@ DEVICE=cpu
 
 ### Model Configuration
 
-Edit `backend/config.py` to customize:
+Edit `src/config.py` to customize:
 
 - Detection model (MTCNN)
 - Embedding model (VGGFace2, CASIA-WebFace)
@@ -518,11 +558,14 @@ Tested on: Intel Core i5, 8GB RAM, CPU only
 ### Build and Run
 
 ```bash
+# Navigate to docker directory
+cd docker
+
 # Build image
 docker build -t frs:latest .
 
 # Run container
-docker run -p 8000:8000 -p 8501:8501 frs:latest
+docker run -p 8000:8000 frs:latest
 ```
 
 ### Docker Compose
@@ -538,6 +581,9 @@ docker-compose up -d
 ### Run Tests
 
 ```bash
+# Activate environment first
+.\frs_env\Scripts\Activate.ps1
+
 # All tests
 pytest tests/ -v
 
@@ -545,7 +591,7 @@ pytest tests/ -v
 pytest tests/test_api.py -v
 
 # With coverage
-pytest tests/ --cov=backend --cov-report=html
+pytest tests/ --cov=src --cov-report=html
 ```
 
 ---
@@ -590,7 +636,7 @@ netstat -ano | findstr :8000
 **Issue:** ModuleNotFoundError
 ```bash
 # Ensure virtual environment is activated
-frs\Scripts\activate
+.\frs_env\Scripts\Activate.ps1
 
 # Reinstall dependencies
 pip install -r requirements.txt
