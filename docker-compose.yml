@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  frs-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: face-recognition-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - DEBUG=False
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DATABASE_URL=sqlite+aiosqlite:///./data/frs_database.db
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    networks:
+      - frs-network
+
+networks:
+  frs-network:
+    driver: bridge

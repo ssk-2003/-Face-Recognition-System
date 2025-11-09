@@ -1,0 +1,21 @@
+# Frontend UI Dependencies
+
+# Web Interface
+streamlit>=1.29
+streamlit-webrtc>=0.47
+
+# Image Processing
+Pillow>=10.0
+opencv-python>=4.8
+numpy>=1.24
+
+# HTTP Requests
+requests>=2.31
+
+# Data Visualization  
+pandas>=2.1
+matplotlib>=3.8
+seaborn>=0.13
+
+# Utilities
+python-dotenv>=1.0

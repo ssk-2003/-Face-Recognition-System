@@ -1,0 +1,224 @@
+{
+  "info": {
+    "name": "Face Recognition Service",
+    "description": "API collection for testing Face Recognition Service endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check if the service is running and all models are loaded"
+          }
+        },
+        {
+          "name": "System Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/stats",
+              "host": ["{{base_url}}"],
+              "path": ["stats"]
+            },
+            "description": "Get system statistics and performance metrics"
+          }
+        },
+        {
+          "name": "Root",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Face Detection",
+      "item": [
+        {
+          "name": "Detect Faces",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Image file (JPEG/PNG)"
+                },
+                {
+                  "key": "threshold",
+                  "value": "0.8",
+                  "type": "text",
+                  "description": "Detection confidence threshold (optional)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/detect",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "detect"]
+            },
+            "description": "Detect all faces in an image and return bounding boxes"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Face Recognition",
+      "item": [
+        {
+          "name": "Recognize Faces",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Image file (JPEG/PNG)"
+                },
+                {
+                  "key": "threshold",
+                  "value": "0.6",
+                  "type": "text",
+                  "description": "Recognition threshold (optional)"
+                },
+                {
+                  "key": "top_k",
+                  "value": "5",
+                  "type": "text",
+                  "description": "Number of top matches (optional)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/recognize?threshold=0.6&top_k=5",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "recognize"],
+              "query": [
+                {
+                  "key": "threshold",
+                  "value": "0.6"
+                },
+                {
+                  "key": "top_k",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Detect and recognize faces in an image"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Identity Management",
+      "item": [
+        {
+          "name": "Add Identity",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "John Doe",
+                  "type": "text",
+                  "description": "Unique identity name"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Face image"
+                },
+                {
+                  "key": "metadata",
+                  "value": "{\"department\": \"IT\", \"employee_id\": \"12345\"}",
+                  "type": "text",
+                  "description": "JSON metadata (optional)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/add_identity",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "add_identity"]
+            },
+            "description": "Register a new identity in the gallery"
+          }
+        },
+        {
+          "name": "List Identities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/list_identities?skip=0&limit=100",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "list_identities"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of records to skip"
+                },
+                {
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of records"
+                }
+              ]
+            },
+            "description": "Retrieve all registered identities"
+          }
+        },
+        {
+          "name": "Delete Identity",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/delete_identity/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "delete_identity", "1"]
+            },
+            "description": "Remove an identity from the gallery (replace 1 with actual ID)"
+          }
+        }
+      ]
+    }
+  ]
+}
