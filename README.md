@@ -116,7 +116,7 @@ Face Recognition System (FRS) is a complete solution for face detection, recogni
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/FRS.git
+git clone https://github.com/ssk-2003/-Face-Recognition-System.git
 cd FRS
 ```
 
@@ -631,8 +631,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📧 Contact
 
-- **Project Link:** https://github.com/yourusername/FRS
-- **Issue Tracker:** https://github.com/yourusername/FRS/issues
+- **Project Link:** https://github.com/ssk-2003/-Face-Recognition-System
+- **Issue Tracker:** https://github.com/ssk-2003/-Face-Recognition-System/issues
 - **Email:** support@example.com
 
 ---
