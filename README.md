@@ -666,5 +666,6 @@ If you find this project useful, please consider giving it a star! ⭐
 [⬆ Back to Top](#-face-recognition-system-frs)
 
 </div>
-#   - F a c e - R e c o g n i t i o n - S y s t e m  
+#   - F a c e - R e c o g n i t i o n - S y s t e m 
+ 
  
